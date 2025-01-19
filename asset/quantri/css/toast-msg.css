@@ -1,0 +1,110 @@
+/* Toast message CSS */
+.toastMsg {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 8px;
+    border-left: 4px solid;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.08), 0 -5px 8px rgba(0, 0, 0, 0.08);
+    padding: 12px 0;
+    min-width: 350px;
+    max-width: 400px;
+    transition: all linear 0.3s;
+    /* animation: slideInLeft 0.3s ease, fadeOut linear 1s 3s forwards; */
+    /*                                   !* sau 3s thì mờ đi trong vòng 1 giây, forwards: dừng ở điểm cuối của animation *! */
+}
+
+/* animation cho việc đẩy toast vào khung nhìn */
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(calc(100% + 32px));   /* đẩy toast ra ngoài khung nhìn */
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* animation cho việc ẩn toast */
+@keyframes fadeOut {
+    to {
+        opacity: 0;     /* vì mặc định opacity là 1 */
+    }
+}
+
+.toast--success {
+    border-color: green;
+}
+
+.toast--success .toast__icon {
+    color: green;
+}
+
+.toast--warning {
+    border-color: orange;
+}
+
+.toast--warning .toast__icon {
+    color: orange;
+}
+
+.toast--error {
+    border-color: red;
+}
+
+.toast--error .toast__icon {
+    color: red;
+}
+
+.toast--info {
+    border-color: blue;
+}
+
+.toast--info .toast__icon {
+    color: blue;
+}
+
+/* phần tử toast liền kề phía sau cách phần tử toast phía trước 24px */
+.toastMsg + .toastMsg {
+    margin-top: 24px;
+}
+
+.toast__icon {
+    font-size: 36px;
+}
+
+.toast__icon,
+.toast__close {
+    padding: 0 16px;
+}
+
+.toast__body {
+    flex-grow: 1;   /* đẩy icon sát bên phải */
+}
+
+.toast__title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+}
+
+.toast__msg {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #888;
+    line-height: 1.5;
+}
+
+.toast__close {
+    font-size: 30px;
+    color: rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+#toast {
+    position: fixed;
+    top: 50px;
+    right: 10px;
+    z-index: 9999;
+}

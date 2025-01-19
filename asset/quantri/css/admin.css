@@ -1,0 +1,363 @@
+/* CUSTOM */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
+* {
+    font-family: Inter, sans-serif;
+}
+
+body {
+    background: #fefefe;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #1D712C;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-track {
+    background: linear-gradient(45deg, #b4adad4d, #cccccc4d);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.modal {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* ... */
+
+/* COMMON */
+.text-message {
+    color: darkred;
+    font-size: small;
+}
+
+/* ... */
+
+/* LOGIN */
+
+.form-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    width: 450px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.15);
+}
+
+.form-title {
+    font-weight: 600;
+    text-align: center;
+}
+
+.forgot-password {
+    text-align: end;
+}
+
+.forgot-password-link {
+    color: #1d712c;
+    text-decoration: none;
+    font-style: italic;
+    font-weight: 400;
+}
+
+.forgot-password-link:hover {
+    font-style: normal;
+    color: #1d712c;
+}
+
+.bg-warning-custom {
+    background-color: #c5a11d;
+}
+
+.errorMessage_email,
+.errorMessage_password {
+    color: red;
+}
+
+/* ... */
+
+/* QUẢN LÝ */
+.account-name {
+    color: #1D712C;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.btn-outline-custom {
+    color: #087b44;
+    background-color: #fff;
+    border: 1px solid #087b44;
+}
+
+.btn-outline-custom:hover {
+    background-color: #087b44;
+    color: white;
+}
+
+.sidebar-item:hover {
+    background-color: #bcf5d9;
+    font-weight: 500;
+}
+
+.page-title {
+    font-weight: 600;
+    color: #1D712C;
+    margin-bottom: 24px;
+}
+
+.btn-control {
+    background-color: #087b44;
+    color: white;
+}
+
+.btn-control:hover {
+    opacity: 0.9;
+    background-color: #087b44;
+    color: white;
+}
+
+.active {
+    background-color: #1D712C !important;
+    border-color: #1D712C !important;
+}
+
+.page-link {
+    color: #000;
+}
+
+.table-header {
+    background-color: #1D712C;
+    color: white;
+}
+
+.modal-header {
+    border-bottom: none;
+}
+
+.modal-footer {
+    border-top: none;
+}
+
+.modal-body {
+    padding-top: 0;
+}
+
+.permission-group th,
+.permission-group td {
+    text-align: center;
+}
+
+.permission-group tbody td:first-child {
+    text-align: left;
+}
+
+/* .... */
+
+/* PRODUCTS */
+.book-img {
+    width: 100px;
+}
+
+.modal-body-left {
+    border-right: 1px solid #1d712ce0;
+}
+
+.img-preview-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.img-preview-container>.upload-img-preview {
+    padding: 5px;
+    width: 250px;
+}
+
+.upload-img-preview .img-preview {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.form-group-file {
+    text-align: center;
+}
+
+.form-label-file {
+    margin: 20px 0;
+    display: inline-block;
+    padding: 10px 40px;
+    background-color: #1D712C;
+    color: #fff;
+    border-radius: 20px;
+}
+
+.form-label-file i {
+    margin-right: 5px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.form-label-file:hover {
+    background-color: #1d712cf0;
+    cursor: pointer;
+}
+
+.form-label-file:hover i {
+    transform: translateY(-3px);
+}
+
+/* ... */
+
+/* GRN */
+.modal-grn-info {
+    padding: 20px;
+    background-color: #1d712c1d;
+    border: 1px solid #1d712c;
+    border-radius: 8px;
+}
+
+.modal-grn-info .grn-info-title {
+    font-weight: bold;
+    width: 15%;
+}
+
+.grn-info-group-item .grn-info-title {
+    width: 30%;
+}
+
+.modal-grn-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.grn-row-template {
+    display: none;
+}
+
+.delete-row i {
+    color: #1d712c;
+    font-size: x-large;
+}
+
+.grn-status-select {
+    background-color: #1d712c0b;
+    border: 1px solid #1d712c40;
+}
+
+/* ... */
+
+/* CHART */
+.stretch-card {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+    -webkit-box-pack: stretch;
+    -ms-flex-pack: stretch;
+    justify-content: stretch;
+}
+
+.grid-margin,
+.purchase-popup {
+    margin-bottom: 1.5rem;
+}
+
+.card.card-img-holder {
+    position: relative;
+}
+
+.stretch-card>.card {
+    width: 100%;
+    min-width: 100%;
+}
+
+.card {
+    border: 0;
+    background: #fff;
+}
+
+.bg-gradient-danger {
+    background: linear-gradient(to right, #ff9875, #fe7096) !important;
+}
+
+.bg-gradient-info {
+    background: linear-gradient(to right, #b977ff, #047edf 99%) !important;
+}
+
+.bg-gradient-success {
+    background: linear-gradient(to right, #6f95da, #07cdae) !important;
+}
+
+.card.box-shadow-card {
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+.card.card-img-holder .card-img-absolute {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+}
+
+.card .card-body {
+    padding: 1rem 1rem;
+}
+
+.font-weight-normal {
+    font-weight: 500 !important;
+}
+
+.card-text-custom {
+    font-family: 'Lexend', sans-serif;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.card-icon {
+    /* display: inline-block; */
+    font-size: 2rem;
+    float: right;
+}
+
+.card-text-custom.card-text {
+    font-weight: 300;
+}
+
+.card.card-shadow.chart-group {
+    border: 4px solid #1d712d8c;
+}
+
+.chart-container {
+    height: 660px;
+}
+
+@media (max-width: 1023px) { /* Định nghĩa cho màn hình nhỏ hơn 768px */
+    .chart-container {
+        height: auto; /* Tự động điều chỉnh chiều cao theo nội dung */
+    }
+}
+
+.chart-group .card-header {
+    background-color: #1a712d20;
+    border-radius: 0;
+}
+/* ... */
