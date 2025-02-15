@@ -377,7 +377,8 @@ $(document).ready(function () {
                 selectElement.empty();
                 var option = $('<option></option>')
                         .attr('value', -1)  
-                        .text("---Chọn---"); 
+                        .attr('class', 'add-new-product')
+                        .text("---Nhập mới---");
                 selectElement.append(option);
                 $.each(books, function(index, book) {
                     var option = $('<option></option>')
@@ -392,6 +393,221 @@ $(document).ready(function () {
         $('#grnForm table tbody').append(newRow);
         updateRowCount();   //Bỏ dòng này nếu không có row-count
     });
+
+    const modalTitleProduct = document.getElementById('productModalLabel');
+    const modalSaveBtnProduct = document.getElementById('saveModalBtnProduct');
+    let submit_btn_product = document.getElementById('submit_btn_product');
+
+    $(document).on('change', 'select[name="grn_product[]"]', function () {
+        var selectedOption = $(this).find('option:selected');
+        if (selectedOption.hasClass('add-new-product')) {
+            console.log("Mục 'Thêm mới' đã được chọn");
+            modalTitleProduct.textContent = 'Thêm sản phẩm';
+            modalSaveBtnProduct.textContent = 'Thêm sản phẩm';
+            submit_btn_product.setAttribute('name', 'action');
+            document.getElementById('productForm').querySelectorAll('.edit').forEach(element => {
+                element.style.display = 'none';
+            });
+            $('#productModal').modal('show'); // Hiển thị modal thêm sản phẩm
+        }
+    });   
+
+    $('#upload-img').on('change', function (event) {
+        let url = URL.createObjectURL(event.target.files[0]);
+        $('#img-preview').attr('src', url);
+    });
+
+    //modal tác giả
+    document.getElementById('openSelectAuthorModalBtn').addEventListener('click', function (e) {
+        const selectAuthorModal = new bootstrap.Modal(document.getElementById('selectAuthorModal'));
+        selectAuthorModal.show(); // Hiển thị modal chọn tác giả
+    });
+    
+    var authors = [];
+    $(document).on('click', '#saveSubModalBtn', function () {
+        // Reset authors
+        authors.length = 0;
+
+        $('.select-author-checkbox').each(function () {
+            if ($(this).is(':checked')) {
+                authors.push($(this).val());
+            }
+        });
+        if (authors.length === 0) {
+            toast({
+                title: 'Thất bại!',
+                message: 'Vui lòng chọn ít nhất một tác giả!',
+                type: 'error',
+                duration: 3000
+            });
+            return;
+        }
+        toast({
+            title: 'Thành công!',
+            message: 'Chọn tác giả thành công!',
+            type: 'success',
+            duration: 3000
+        });
+        console.log(authors);
+    })
+
+    //modal sản phẩm
+    document.getElementById('productModal').addEventListener('hidden.bs.modal', function () {
+        document.getElementById('productForm').reset();
+        let textMessage = document.querySelectorAll('.text-message');
+        textMessage.forEach(element => {
+            element.textContent = '';
+        });
+        location.reload();
+    });
+    
+    function formValidate() {
+        let img = $('#productForm input[name="product-img"]').val();
+        let name = $('#productForm input[name="product-name"]').val();
+        let publisher = $('#productForm input[name="product-publisher"]').val();
+        let supplier = $('#productForm select[name="product-supplier"]').val();
+        let author = authors;
+        let category = $('#productForm select[name="product-category"]').val();
+        let original_price = $('#productForm input[name="product-original-price"]').val();
+        // let sale_price = $('#productForm input[name="product-sale-price"]').val();
+        let publish_year = $('#productForm input[name="product-publish-year"]').val();
+        let weight = $('#productForm input[name="product-weight"]').val();
+        let description = $('#productForm textarea[name="product-description"]').val().trim();
+
+        let isValid = true;
+
+        if (img === '') {
+            $('.text-message.product-img-msg').text("Vui lòng chọn ảnh cho sản phẩm!");
+            isValid = false;
+        } else {
+            $('.text-message.product-img-msg').text("");
+        }
+
+        if (name === '') {
+            $('.text-message.product-name-msg').text("Vui lòng nhập tên sản phẩm!");
+            isValid = false;
+        } else {
+            $('.text-message.product-name-msg').text("");
+        }
+
+        if (publisher === '') {
+            $('.text-message.product-publisher-msg').text("Vui lòng nhập nhà xuất bản!");
+            isValid = false;
+        } else {
+            $('.text-message.product-publisher-msg').text("");
+        }
+
+        if (supplier === '') {
+            $('.text-message.product-supplier-msg').text("Vui lòng chọn nhà cung cấp!");
+            isValid = false;
+        } else {
+            $('.text-message.product-supplier-msg').text("");
+        }
+
+        if (author.length === 0) {
+            $('.text-message.product-author-msg').text("Vui lòng chọn tác giả!");
+            isValid = false;
+        } else {
+            $('.text-message.product-author-msg').text("");
+        }
+
+        if (category === '') {
+            $('.text-message.product-category-msg').text("Vui lòng chọn thể loại!");
+            isValid = false;
+        } else {
+            $('.text-message.product-category-msg').text("");
+        }
+
+        if (original_price === '') {
+            $('.text-message.product-original-price-msg').text("Vui lòng nhập giá bìa!");
+            isValid = false;
+        } else if (isNaN(original_price)) {
+            $('.text-message.product-original-price-msg').text("Giá bìa không hợp lệ!");
+            isValid = false;
+        } else if (original_price <= 0) {
+            $('.text-message.product-original-price-msg').text("Giá bìa không hợp lệ!");
+            isValid = false;
+        } else {
+            $('.text-message.product-original-price-msg').text("");
+        }
+        
+        let currentYear = new Date().getFullYear();
+        if (publish_year === '') {
+            $('.text-message.product-publish-year-msg').text("Vui lòng nhập năm xuất bản!");
+            isValid = false;
+        } else if (isNaN(publish_year) || publish_year<0 || publish_year.length !== 4) {
+            $('.text-message.product-publish-year-msg').text("Năm xuất bản không hợp lệ!");
+            isValid = false;
+        } else if (parseInt(publish_year) > currentYear) { 
+            $('.text-message.product-publish-year-msg').text("Năm xuất bản không được lớn hơn năm hiện tại!");
+            isValid = false;
+        } else {
+            $('.text-message.product-publish-year-msg').text("");
+        }
+
+        if (weight === '') {
+            $('.text-message.product-weight-msg').text("Vui lòng nhập trọng lượng!");
+            isValid = false;
+        } else if (isNaN(weight)) {
+            $('.text-message.product-weight-msg').text("Trọng lượng không hợp lệ!");
+            isValid = false;
+        } else if (weight <= 0) {
+            $('.text-message.product-weight-msg').text("Trọng lượng không hợp lệ!");
+            isValid = false;
+        } else {
+            $('.text-message.product-weight-msg').text("");
+        }
+
+        if (description === '') {
+            $('.text-message.product-description-msg').text("Vui lòng nhập mô tả!");
+            isValid = false;
+        } else {
+            $('.text-message.product-description-msg').text("");
+        }
+
+        return isValid;
+    }
+
+    $('#productForm').on('submit', function (event) {
+        event.preventDefault();
+        if (formValidate()) {
+            let formData = new FormData($('#productForm')[0]);
+            formData.append('product-authors', authors);
+            $.ajax({
+                url: '../controller/quantri/ProductController.php',
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    console.log(response);
+                    const obj = JSON.parse(response);
+                    if (obj.success) {
+                        toast({
+                            title: 'Thành công!',
+                            message: 'Thêm sản phẩm thành công!',
+                            type: 'success',
+                            duration: 3000
+                        });
+                    } else if (!obj.success) {
+                        toast({
+                            title: 'Thất bại!',
+                            message: 'Thông tin sản phẩm trùng lặp!',
+                            type: 'error',
+                            duration: 3000
+                        });                    
+                    }
+                }
+            })
+        } else {
+            toast({
+                title: 'Thất bại!',
+                message: 'Vui lòng kiểm tra lại thông tin!',
+                type: 'error',
+                duration: 3000
+            });
+        }
+    })
 
     /* Start: search product */
 $(document).on('change', '#grnForm select[name="grn_product[]"]', function(){

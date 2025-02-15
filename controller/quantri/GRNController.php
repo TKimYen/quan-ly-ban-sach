@@ -3,6 +3,9 @@
     include __DIR__.'/../../model/GRN.php';
     include __DIR__.'/../../model/Supplier.php';
     include __DIR__.'/../../model/Product.php';
+    include __DIR__.'/../../model/Category.php';
+    include __DIR__.'/../../model/Author.php';
+    include __DIR__.'/../../model/Discount.php';
     include __DIR__.'/../../model/GRNDetail.php';
     include __DIR__.'/../../model/Account.php';
 
