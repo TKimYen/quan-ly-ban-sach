@@ -20,6 +20,17 @@ const errorMessageEmail = document.querySelector(".user-email-msg");
 const errorMessagePhoneNumber = document.querySelector(".user-phone-msg");
 const errorMessagePassword = document.querySelector(".user-password-msg");
 
+const touchedFields = {
+  fullname: false,
+  email: false,
+  phoneNumber: false,
+  password: false,
+};
+
+fullname.addEventListener("blur", () => touchedFields.fullname = true);
+email.addEventListener("blur", () => touchedFields.email = true);
+phoneNumber.addEventListener("blur", () => touchedFields.phoneNumber = true);
+password.addEventListener("blur", () => touchedFields.password = true);
 
 //Các function ValidateForm
 const validateFullname = () => {
@@ -113,6 +124,18 @@ const validateFullname = () => {
                                 passwordIsValid;
     return formIsValid;
   }
+
+fullname.addEventListener("input", validateFullname);
+fullname.addEventListener("blur", validateFullname);
+
+email.addEventListener("input", validateEmail);
+email.addEventListener("blur", validateEmail);
+
+phoneNumber.addEventListener("input", validatePhoneNumber);
+phoneNumber.addEventListener("blur", validatePhoneNumber);
+
+password.addEventListener("input", validatePassword);
+password.addEventListener("blur", validatePassword);
 
 // ======================== End Validate Form =============================
 
