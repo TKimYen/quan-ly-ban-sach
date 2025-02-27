@@ -179,7 +179,13 @@
                         </div>
                         <div class="mb-3 add">
                             <label for="password" class="form-label">Mật khẩu</label>
-                            <input type="password" name="password" id="password" class="form-control" placeholder="Nhập mật khẩu">
+                            <div class="password-wrapper">
+                                <input type="password" name="password" id="password" class="form-control" placeholder="Nhập mật khẩu">
+                                <span class="password-toggle" onclick="togglePassword('password', 'eye', 'eyeSlash')">
+                                    <i class="fas fa-eye" id="eye"></i>
+                                    <i class="fas fa-eye-slash" id="eyeSlash" style="display: none;"></i>
+                                </span>
+                            </div>
                             <span class="text-message user-password-msg"></span>
                         </div>
                         <div class="mb-3">
@@ -223,4 +229,42 @@
     <!-- Link JS ở chỗ này nè!!! -->
     <script src="../asset/quantri/js/Account.js"></script>
 </html>
+<style>
+.password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
 
+.password-wrapper input {
+    flex-grow: 1;
+    padding-right: 40px; /* Để không bị che bởi icon */
+}
+
+.password-toggle {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px;
+    color: #555;
+}
+</style>
+<script>
+    function togglePassword(inputId, eyeId, eyeSlashId) {
+        const passwordInput = document.getElementById(inputId);
+        const eyeIcon = document.getElementById(eyeId);
+        const eyeSlashIcon = document.getElementById(eyeSlashId);
+
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            eyeIcon.style.display = "none";
+            eyeSlashIcon.style.display = "inline";
+        } else {
+            passwordInput.type = "password";
+            eyeIcon.style.display = "inline";
+            eyeSlashIcon.style.display = "none";
+        }
+    }
+</script>

@@ -177,6 +177,7 @@ $(document).ready(function() {
         modalTitle.textContent = 'Chỉnh sửa tài khoản';
         modalSaveBtn.textContent = 'Lưu thay đổi';
         $("#password").prop('disabled', true);
+        $('.password-toggle').hide();
         submit_btn.setAttribute('name', 'action');
         submit_btn.setAttribute('value', 'submit_btn_update');
         $.ajax({

@@ -270,7 +270,6 @@ input::-webkit-inner-spin-button {
 }
 
 /* --------- END: PHẦN NÀY CSS FOOTER ---------*/
-
 /* --------- START: PHẦN NÀY CSS TRANG ĐĂNG NHẬP ---------*/
 .signin {
     height: 500px;
@@ -384,16 +383,8 @@ input::-webkit-inner-spin-button {
 /* --------- END: PHẦN NÀY CSS TRANG ĐĂNG NHẬP ---------*/
 
 /* --------- START: PHẦN NÀY CSS TRANG ĐĂNG KÝ ---------*/
-.signup {
-    height: 650px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
-.error {
-    color: red;
-}
+
 
 /* --------- END: PHẦN NÀY CSS TRANG ĐĂNG KÝ ---------*/
 

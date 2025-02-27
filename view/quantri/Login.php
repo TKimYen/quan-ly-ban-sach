@@ -13,6 +13,12 @@
                     <input type="password" class="form-control" id="password" name="password" placeholder="">
                     <label for="password">Password*</label>
                     <span class="errorMessage_password"></span>
+                    <!-- Togle ẩn hiện -->
+                    <span class="password-toggle" onclick="togglePassword('password', 'eyeIcon', 'eyeSlashIcon')">
+                        <i class="fas fa-eye position-absolute top-50 end-0 translate-middle-y me-3" id="eyeIcon"></i>
+                        <i class="fas fa-eye-slash position-absolute top-50 end-0 translate-middle-y me-3" id="eyeSlashIcon" style="display: none;"></i>
+                    </span>
+                    <!-- hết togle ẩn hiện -->
                 </div>
                 <div class="forgot-password mb-4">
                     <a href="?page=forgot_password" class="forgot-password-link">Quên mật khẩu</a>
@@ -25,3 +31,34 @@
 
     <!-- Link JS ở đây nè!!! -->
     <script src="../asset/quantri/js/Login.js"></script>
+<style>
+    .password-toggle {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px;
+    color: #555;
+}
+</style>
+<script>
+    function togglePassword(inputId, eyeId, eyeSlashId) {
+        const passwordInput = document.getElementById(inputId);
+        const eyeIcon = document.getElementById(eyeId);
+        const eyeSlashIcon = document.getElementById(eyeSlashId);
+
+        if (passwordInput) {
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                eyeIcon.style.display = "none";
+                eyeSlashIcon.style.display = "inline";
+            } else {
+                passwordInput.type = "password";
+                eyeIcon.style.display = "inline";
+                eyeSlashIcon.style.display = "none";
+            }
+        }
+    }
+</script>
+    
