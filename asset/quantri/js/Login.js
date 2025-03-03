@@ -4,6 +4,14 @@ const password = document.querySelector("#password");
 const errorMessageEmail = document.querySelector(".errorMessage_email");
 const errorMessagePassword = document.querySelector(".errorMessage_password");
 
+const touchedFields = {
+  email: false,
+  password: false
+};
+
+email.addEventListener("blur", () => touchedFields.email = true);
+password.addEventListener("blur", () => touchedFields.password = true);
+
 const validateEmail = () => {
   let emailIsValid = false;
   const regexEmail =
@@ -44,6 +52,13 @@ const validateFormDangNhap = () => {
   let formIsValid = emailIsValid && passwordIsValid;
   return formIsValid;
 };
+
+email.addEventListener("input", validateEmail);
+email.addEventListener("blur", validateEmail);
+
+password.addEventListener("input", validateMatkhau);
+password.addEventListener("blur", validateMatkhau);
+
 $(document).ready(function(){
     // Cái này để test toast messgae thôi nha mấy ní!!!
     $('#login-form').submit(function(event) {

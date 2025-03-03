@@ -3,7 +3,7 @@ $(document).ready(function () {
     const ctx = document.getElementById('myChart');
 
     let myChart = null;
-    renderLineChart();
+    renderBarChart();
 
     chartSelectBox.addEventListener('change', function (e) {
         e.preventDefault();
@@ -13,7 +13,7 @@ $(document).ready(function () {
         }
         switch (selectedValue) {
             case 1:
-                renderLineChart();
+                renderBarChart();
                 break;
             case 2:
                 renderHorizontalBarChart(action = 'getTop10BestSellingBooks');
@@ -34,7 +34,7 @@ $(document).ready(function () {
         }
     });
 
-    function renderLineChart() {
+    function renderBarChart() {
         $.ajax({
             url: '../controller/quantri/ChartController.php',
             type: 'POST',
@@ -43,39 +43,38 @@ $(document).ready(function () {
             },
             dataType: 'json',
             success: function (result) {
+
+                console.log(`Result: ${result}}`);
+
                 let data = {
                     labels: result.months,
                     datasets: [
                         {
                             label: 'Doanh thu',
                             data: result.revenues,
-                            fill: true,
+                            backgroundColor: 'rgba(102, 153, 255, 0.6)',
                             borderColor: 'rgb(102, 153, 255)',
-                            backgroundColor: 'rgba(102, 153, 255, 0.1)',
-                            tension: 0.2,
+                            borderWidth: 1
                         },
                         {
                             label: 'Chi phí',
                             data: result.costs,
-                            fill: true,
+                            backgroundColor: 'rgba(253, 138, 138, 0.6)',
                             borderColor: 'rgb(253, 138, 138)',
-                            backgroundColor: 'rgba(253, 138, 138, 0.1)',
-                            tension: 0.2,
+                            borderWidth: 1
                         },
                         {
                             label: 'Lợi nhuận',
                             data: result.profits,
-                            fill: true,
+                            backgroundColor: 'rgba(75, 192, 192, 0.6)',
                             borderColor: 'rgb(75, 192, 192)',
-                            backgroundColor: 'rgba(75, 192, 192, 0.1)',
-                            tension: 0.2,
-                        },
-
+                            borderWidth: 1
+                        }
                     ]
                 };
-
+    
                 let config = {
-                    type: 'line',
+                    type: 'bar',
                     data: data,
                     options: {
                         responsive: true,
@@ -97,6 +96,7 @@ $(document).ready(function () {
                                         size: 14,
                                     },
                                 },
+                                stacked: false
                             },
                             y: {
                                 title: {
@@ -115,10 +115,10 @@ $(document).ready(function () {
                                         size: 14,
                                     },
                                     callback: function (value) {
-                                        let yValue = this.getLabelForValue(value);
-                                        return yValue.replaceAll(',', '.');
+                                        return value.toLocaleString('vi-VN');
                                     }
-                                }
+                                },
+                                stacked: false
                             }
                         },
                         plugins: {
@@ -144,30 +144,18 @@ $(document).ready(function () {
                                     family: 'Lexend, sans-serif',
                                     size: 14,
                                 },
-                                align: function (context) {
-                                    let value = context.chart.data.datasets[context.datasetIndex].data[context.dataIndex];
-                                    if (value < 0) {
-                                        return 'bottom';
-                                    } else if (value > 0) {
-                                        return 'top';
-                                    } else if (value === 0) {
-                                        return 'center';
-                                    }
-                                    
-                                },
-                                offset: 5,
-                                color: function (context) {
-                                    return context.chart.data.datasets[context.datasetIndex].borderColor;
-                                },
+                                anchor: 'end',
+                                align: 'top',
+                                color: 'black',
                                 formatter: function (value) {
-                                    return value === 0 ? '' : value.toLocaleString('vi-VN');
+                                    return value.toLocaleString('vi-VN');
                                 }
                             }
                         }
                     },
                     plugins: [ChartDataLabels]
                 };
-
+    
                 myChart = new Chart(ctx, config);
             },
             error: function (error) {
@@ -175,6 +163,149 @@ $(document).ready(function () {
             }
         });
     }
+    
+
+    // function renderLineChart() {
+    //     $.ajax({
+    //         url: '../controller/quantri/ChartController.php',
+    //         type: 'POST',
+    //         data: {
+    //             action: 'getRCP'
+    //         },
+    //         dataType: 'json',
+    //         success: function (result) {
+    //             let data = {
+    //                 labels: result.months,
+    //                 datasets: [
+    //                     {
+    //                         label: 'Doanh thu',
+    //                         data: result.revenues,
+    //                         fill: true,
+    //                         borderColor: 'rgb(102, 153, 255)',
+    //                         backgroundColor: 'rgba(102, 153, 255, 0.1)',
+    //                         tension: 0.2,
+    //                     },
+    //                     {
+    //                         label: 'Chi phí',
+    //                         data: result.costs,
+    //                         fill: true,
+    //                         borderColor: 'rgb(253, 138, 138)',
+    //                         backgroundColor: 'rgba(253, 138, 138, 0.1)',
+    //                         tension: 0.2,
+    //                     },
+    //                     {
+    //                         label: 'Lợi nhuận',
+    //                         data: result.profits,
+    //                         fill: true,
+    //                         borderColor: 'rgb(75, 192, 192)',
+    //                         backgroundColor: 'rgba(75, 192, 192, 0.1)',
+    //                         tension: 0.2,
+    //                     },
+
+    //                 ]
+    //             };
+
+    //             let config = {
+    //                 type: 'line',
+    //                 data: data,
+    //                 options: {
+    //                     responsive: true,
+    //                     scales: {
+    //                         x: {
+    //                             title: {
+    //                                 display: true,
+    //                                 text: 'Tháng',
+    //                                 font: {
+    //                                     weight: 'bold',
+    //                                     size: 16,
+    //                                     family: 'Lexend, sans-serif',
+    //                                 },
+    //                                 padding: { top: 10 }
+    //                             },
+    //                             ticks: {
+    //                                 font: {
+    //                                     family: 'Lexend',
+    //                                     size: 14,
+    //                                 },
+    //                             },
+    //                         },
+    //                         y: {
+    //                             title: {
+    //                                 display: true,
+    //                                 text: '(đơn vị: đồng)',
+    //                                 font: {
+    //                                     weight: 'bold',
+    //                                     size: 16,
+    //                                     family: 'Lexend, sans-serif',
+    //                                 },
+    //                                 padding: { bottom: 20 }
+    //                             },
+    //                             ticks: {
+    //                                 font: {
+    //                                     family: 'Lexend',
+    //                                     size: 14,
+    //                                 },
+    //                                 callback: function (value) {
+    //                                     let yValue = this.getLabelForValue(value);
+    //                                     return yValue.replaceAll(',', '.');
+    //                                 }
+    //                             }
+    //                         }
+    //                     },
+    //                     plugins: {
+    //                         title: {
+    //                             display: true,
+    //                             text: 'THỐNG KÊ DOANH THU, CHI PHÍ VÀ LỢI NHUẬN NĂM ' + new Date().getFullYear(),
+    //                             font: {
+    //                                 weight: 'bold',
+    //                                 size: 20,
+    //                                 family: 'Lexend, sans-serif',
+    //                             }
+    //                         },
+    //                         legend: {
+    //                             labels: {
+    //                                 font: {
+    //                                     family: 'Lexend',
+    //                                     size: 16,
+    //                                 }
+    //                             }
+    //                         },
+    //                         datalabels: {
+    //                             font: {
+    //                                 family: 'Lexend, sans-serif',
+    //                                 size: 14,
+    //                             },
+    //                             align: function (context) {
+    //                                 let value = context.chart.data.datasets[context.datasetIndex].data[context.dataIndex];
+    //                                 if (value < 0) {
+    //                                     return 'bottom';
+    //                                 } else if (value > 0) {
+    //                                     return 'top';
+    //                                 } else if (value === 0) {
+    //                                     return 'center';
+    //                                 }
+                                    
+    //                             },
+    //                             offset: 5,
+    //                             color: function (context) {
+    //                                 return context.chart.data.datasets[context.datasetIndex].borderColor;
+    //                             },
+    //                             formatter: function (value) {
+    //                                 return value === 0 ? '' : value.toLocaleString('vi-VN');
+    //                             }
+    //                         }
+    //                     }
+    //                 },
+    //                 plugins: [ChartDataLabels]
+    //             };
+
+    //             myChart = new Chart(ctx, config);
+    //         },
+    //         error: function (error) {
+    //             console.log(error);
+    //         }
+    //     });
+    // }
 
     function renderHorizontalBarChart(action) {
         $.ajax({

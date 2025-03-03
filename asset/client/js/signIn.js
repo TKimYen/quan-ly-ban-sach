@@ -4,6 +4,14 @@ const password = document.querySelector("#signIn_password");
 const errorMessageEmail = document.querySelector(".errorMessage_signIn_email");
 const errorMessagePassword = document.querySelector(".errorMessage_signIn_password");
 
+const touchedFields = {
+  email: false,
+  password: false,
+};
+
+email.addEventListener("blur", () => touchedFields.email = true);
+password.addEventListener("blur", () => touchedFields.password = true);
+
 const validateEmail = () => {
   let emailIsValid = false;
   const regexEmail =
@@ -36,6 +44,13 @@ const validateMatkhau = () => {
 
   return passwordIsValid;
 }
+
+email.addEventListener("input", validateEmail);
+email.addEventListener("blur", validateEmail);
+
+password.addEventListener("input", validateMatkhau);
+password.addEventListener("blur", validateMatkhau);
+
 
 const validateFormDangNhap = () => {
   let emailIsValid = validateEmail();

@@ -312,7 +312,7 @@ input::-webkit-inner-spin-button {
 }
 
 .signin-form .signin-input {
-    width: 340px;
+    width: 370px;
     height: 32px;
     border-radius: 5px;
     border: 0.5px solid var(--border-cl);
@@ -328,9 +328,9 @@ input::-webkit-inner-spin-button {
     font-size: 14px;
 }
 
-.signin-form .input-field {
+/* .signin-form .input-field {
     margin-bottom: 20px;
-}
+} */
 
 .forgot-password {
     font-size: 13px;
@@ -389,6 +389,14 @@ input::-webkit-inner-spin-button {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+#signUp_form .input-field{
+    margin-bottom: 0px;
+}
+
+#signUp_form .signin-input{
+    width: 370px !important;
 }
 
 .error {
