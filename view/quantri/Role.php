@@ -98,20 +98,27 @@
                                     }
                                     if(isset($_SESSION['function']['NQ_xoa'])){
                                 ?>
-                                <span>
+                            <span>
                                 <?php
-                                    if($role->getTrangthai())
-                                        echo '
-                                            <button class="btn fs-5 lock_role">
-                                            <i class="fa-regular fa-lock"></i>
-                                            </button>';
-                                    else
-                                        echo '
-                                            <button class="btn fs-5 unlock_role">
-                                            <i class="fa-regular fa-unlock"></i>
-                                            </button>'
+                                    // Lấy ID nhóm quyền
+                                    $idNQ = $role->getIdNQ();
+
+                                    // Nếu nhóm quyền là Admin (45) hoặc Chủ doanh nghiệp (44), không hiển thị nút khóa/mở khóa
+                                    if ($idNQ != 44 && $idNQ != 45) {
+                                        if ($role->getTrangthai()) {
+                                            echo '
+                                                <button class="btn fs-5 lock_role">
+                                                    <i class="fa-regular fa-lock"></i>
+                                                </button>';
+                                        } else {
+                                            echo '
+                                                <button class="btn fs-5 unlock_role">
+                                                    <i class="fa-regular fa-unlock"></i>
+                                                </button>';
+                                        }
+                                    }
                                 ?>
-                                </span>
+                            </span>
                                 <?php
                                     }
                                 ?>

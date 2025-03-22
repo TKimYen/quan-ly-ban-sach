@@ -1335,7 +1335,7 @@ input::-webkit-inner-spin-button {
     border: 0.5px solid #333;
 }
 
-.cart-content-box .quantity .input-quantity {
+/* .cart-content-box .quantity .input-quantity {
     display: flex;
     height: 165px;
     justify-content: center;
@@ -1357,15 +1357,70 @@ input::-webkit-inner-spin-button {
     font-size: 13px;
 }
 
-.cart-content-box .product-cart-box table tbody tr:last-child {
-    border-bottom: #fff;
-}
+
 
 .cart-content-box .input-quantity-group {
     position: relative;
     display: flex;
     align-items: center;
+} */
+
+.cart-content-box .product-cart-box table tbody tr:last-child {
+    border-bottom: #fff;
 }
+
+/* Cập nhật container chính để các phần tử nằm dọc */
+.cart-content-box .quantity .input-quantity {
+    display: flex;
+    flex-direction: column;  /* Sắp xếp các phần tử con theo chiều dọc */
+    height: 165px;
+    justify-content: center;
+    align-items: center;  /* Căn giữa các phần tử con theo chiều ngang */
+}
+
+/* Cập nhật cho nhóm các nút và input */
+.cart-content-box .quantity .input-quantity .input-quantity-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;  /* Căn giữa các phần tử trong nhóm */
+    gap: 10px;  /* Khoảng cách giữa các nút và input */
+}
+
+/* Nút trừ */
+.cart-content-box .quantity .input-quantity .input-quantity-group .btn-subtract {
+    position: absolute;
+    left: 0px;  /* Đẩy nút trừ ra ngoài bên trái */
+}
+
+/* Nút cộng */
+.cart-content-box .quantity .input-quantity .input-quantity-group .btn-add {
+    position: absolute;
+    right: 0px;  /* Đẩy nút cộng ra ngoài bên phải */
+}
+
+/* Định dạng cho các nút */
+.cart-content-box .quantity .input-quantity .input-quantity-group button {
+    background-color: transparent;
+    border: none;
+    color: #333;
+    font-size: 13px;
+}
+
+/* Thông báo lỗi */
+.cart-content-box .quantity .input-quantity .noti-quantity {
+    margin-top: 10px;  /* Khoảng cách giữa thông báo lỗi và input */
+    color: red;  /* Màu chữ đỏ cho thông báo lỗi */
+    font-size: 14px;
+    display: block;  /* Đảm bảo thông báo lỗi chiếm toàn bộ dòng */
+}
+
+#checkout-link button:disabled {
+    opacity: 0.5;  /* Làm mờ nút */
+    pointer-events: none;  /* Ngăn không cho người dùng click vào nút */
+    cursor: not-allowed;  /* Thay đổi con trỏ chuột */
+}
+
 
 .cart-content-box tbody .book-image img {
     width: 120px;

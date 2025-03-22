@@ -42,7 +42,8 @@
                                                                 <i class="fa-regular fa-plus"></i>
                                                             </button>
                                                         </div>
-                                                    </div>
+                                                        <div class="noti-quantity"></div>
+                                                    </div> 
                                                 </td>
                                                 <td class="book-price">
                                                     <span class="price-text">
@@ -114,13 +115,18 @@
                                         đ
                                     </span>
                                 </div>
-                                <div class="submit-purchase-btn">
-                                    <a href="?page=checkout-address">
-                                        <button class="btn">
+
+                                <div>
+                                    <div class="submit-purchase-btn">
+                                        <button class="btn" id="checkout-button" onclick="handleCheckout()">
                                             Thanh toán
                                         </button>
-                                    </a>
+                                    </div>
+                                    <div class="noti-checkout">
+
+                                    </div>
                                 </div>
+                        
                             </div>
                         </div>
                     </div>

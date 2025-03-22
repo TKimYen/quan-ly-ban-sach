@@ -204,6 +204,23 @@ $(document).ready(function() {
                     $('#status').prop('checked', false);
                     $('#switch-label').text('Bị khóa');
                 }
+
+                console.log("Account IDNQ: ", account.idNQ);
+
+                if (account.idNQ == "44") {
+                    $('#status').prop('disabled', true);
+                    $('#switch-label').css('opacity', '0.5');
+                    console.log("44")
+                } else if (account.idNQ == "45") {
+                    $('#status').prop('disabled', true);
+                    $('#switch-label').css('opacity', '0.5');
+                    console.log("45")
+                } else {
+                    $('#status').prop('disabled', false);
+                    $('#switch-label').css('opacity', '1.0');
+                    console.log("else")
+                }
+
                 // phan quyen
                 const selectElement = $('#role-select');
 
