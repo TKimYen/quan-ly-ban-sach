@@ -107,11 +107,9 @@ $(document).ready(function () {
 
         if (hasError) {
             $('#checkout-button').prop('disabled', true);
-            print("vppww")
             $('.noti-checkout').text('Số lượng không hợp lệ').addClass('text-danger');
         } else {
             $('#checkout-button').prop('disabled', false);
-            print("pqweqwr")
             $('.noti-checkout').text('').removeClass('text-danger');
         }
     }
@@ -128,7 +126,6 @@ $(document).ready(function () {
         });
     
         if (hasError) {
-            print("Print Há ")
             $('.noti-checkout').text('Số lượng không hợp lệ').addClass('text-danger');
             alert("Vui lòng kiểm tra lại số lượng sản phẩm trước khi thanh toán.");
         } else {
