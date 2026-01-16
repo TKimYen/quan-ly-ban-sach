@@ -108,13 +108,13 @@ require __DIR__.'/../../model/Account.php';
             $mail->SMTPAuth   = true;
 
             $mail->Host       = 'smtp.gmail.com';                                         
-            $mail->Username   = 'doannhom4.pttkhttt@gmail.com';               
-            $mail->Password   = 'ewvd stdf afap kckz';
+            $mail->Username   = 'kimyen2712204@gmail.com';               
+            $mail->Password   = 'oycxshbuwgueuvhi';
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             
             $mail->Port       = 587; 
 
-            $mail->setFrom('doannhom4.pttkhttt@gmail.com', 'Nha sach Vinabook');
+            $mail->setFrom('kimyen2712204@gmail.com', 'Nha sach Vinabook');
             $mail->addAddress($_SESSION['signUp']['email']);
             
             $mail->isHTML(true);
